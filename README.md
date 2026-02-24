@@ -1,4 +1,6 @@
 # 🤖 AI-Powered ATS Resume Analyzer
+![alt text](image-1.png)
+![alt text](image.png)
 
 > **Simulate your ATS impact.** Professional-grade resume analysis powered by Llama 3 on Groq. Get real feedback before you apply.
 
