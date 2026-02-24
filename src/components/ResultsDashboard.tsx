@@ -56,14 +56,14 @@ export default function ResultsDashboard({ data, onReset }: ResultsDashboardProp
 
     return (
         <div className="container" style={{ paddingBottom: '4rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
                 <h1 style={{ fontSize: '1.75rem', fontWeight: 800 }}>Analysis Results</h1>
                 <button onClick={onReset} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <RefreshCcw size={18} /> Analyze Again
                 </button>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div className="grid-cols-1 md-grid-cols-3" style={{ display: 'grid', gap: '1.5rem', marginBottom: '2rem' }}>
                 {/* Overall Score Circle */}
                 <div className="card" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--muted)', marginBottom: '1.5rem' }}>Overall ATS Score</h3>
@@ -89,7 +89,7 @@ export default function ResultsDashboard({ data, onReset }: ResultsDashboardProp
                 </div>
 
                 {/* Score Breakdown Bars */}
-                <div className="card">
+                <div className="card md-span-2">
                     <h3 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <Layers size={18} /> Category Breakdown
                     </h3>
@@ -113,7 +113,7 @@ export default function ResultsDashboard({ data, onReset }: ResultsDashboardProp
                 </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div className="grid-cols-1 md-grid-cols-2" style={{ display: 'grid', gap: '1.5rem', marginBottom: '2rem' }}>
                 {/* Strengths */}
                 <div className="card" style={{ borderLeft: '4px solid var(--success)' }}>
                     <h3 style={{ marginBottom: '1rem', color: 'var(--success)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -146,7 +146,7 @@ export default function ResultsDashboard({ data, onReset }: ResultsDashboardProp
             </div>
 
             {/* Keywords & Skills Gaps */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div className="grid-cols-1 md-grid-cols-2" style={{ display: 'grid', gap: '1.5rem', marginBottom: '2rem' }}>
                 <div className="card">
                     <h3 style={{ marginBottom: '1.25rem', fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <Search size={18} /> Missing Keywords
@@ -194,7 +194,7 @@ export default function ResultsDashboard({ data, onReset }: ResultsDashboardProp
             </div>
 
             {/* Quick Wins & Advice */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+            <div className="grid-cols-1 md-grid-cols-2" style={{ display: 'grid', gap: '1.5rem' }}>
                 <div className="card">
                     <h3 style={{ marginBottom: '1rem', fontSize: '1rem', fontWeight: 700 }}>Quick Wins</h3>
                     <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -216,6 +216,14 @@ export default function ResultsDashboard({ data, onReset }: ResultsDashboardProp
                     </ul>
                 </div>
             </div>
-        </div>
+
+            <style jsx>{`
+                @media (min-width: 768px) {
+                    .md-span-2 {
+                        grid-column: span 2;
+                    }
+                }
+            `}</style>
+        </div >
     );
 }

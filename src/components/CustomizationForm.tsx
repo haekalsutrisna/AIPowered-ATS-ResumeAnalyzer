@@ -31,7 +31,7 @@ export default function CustomizationForm({ data, onChange, onSubmit, isLoading,
         <div className="card">
             <h2 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1.5rem' }}>2. Target Career Path</h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div className="grid-cols-1 md-grid-cols-2" style={{ gap: '1.5rem', marginBottom: '1.5rem', display: 'grid' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--muted)' }}>Target Company *</label>
                     <div style={{ position: 'relative' }}>
@@ -60,7 +60,7 @@ export default function CustomizationForm({ data, onChange, onSubmit, isLoading,
                     </select>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
+                <div className="grid-responsive-full" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--muted)' }}>Target Job Title *</label>
                     <input
                         name="jobTitle"
@@ -72,7 +72,7 @@ export default function CustomizationForm({ data, onChange, onSubmit, isLoading,
                     />
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
+                <div className="grid-responsive-full" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--muted)' }}>Job Description (Optional)</label>
                     <textarea
                         name="jobDesc"
@@ -83,6 +83,14 @@ export default function CustomizationForm({ data, onChange, onSubmit, isLoading,
                     />
                 </div>
             </div>
+
+            <style jsx>{`
+                @media (min-width: 768px) {
+                    .grid-responsive-full {
+                        grid-column: span 2;
+                    }
+                }
+            `}</style>
 
             <button
                 onClick={onSubmit}
