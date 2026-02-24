@@ -1,9 +1,5 @@
 import Groq from 'groq-sdk';
 
-const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
-});
-
 export interface AnalysisRequest {
     company: string;
     industry: string;
@@ -13,6 +9,15 @@ export interface AnalysisRequest {
 }
 
 export async function analyzeResume(data: AnalysisRequest) {
+
+    if (!process.env.GROQ_API_KEY) {
+        throw new Error("Missing GROQ_API_KEY environment variable");
+    }
+
+    const groq = new Groq({
+        apiKey: process.env.GROQ_API_KEY,
+    });
+
     const systemPrompt = `You are an advanced Applicant Tracking System (ATS) and senior recruiter hybrid.
 You simulate how enterprise ATS systems rank resumes before human review.
 
@@ -55,7 +60,7 @@ Target Job Title: ${data.jobTitle}
 Job Description: ${data.jobDesc || 'N/A'}
 
 Resume:
-${data.resume_text}
+${data.resume_text.slice(0, 15000)}
 
 Return JSON only in this format:
 {
@@ -88,6 +93,7 @@ Return JSON only in this format:
 }`;
 
     let retries = 1;
+
     while (retries >= 0) {
         try {
             const completion = await groq.chat.completions.create({

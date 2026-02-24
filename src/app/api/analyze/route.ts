@@ -1,3 +1,4 @@
+export const runtime = "nodejs";
 import { NextRequest, NextResponse } from 'next/server';
 import { validateEnv } from '@/lib/env';
 import { extractTextFromPDF } from '@/lib/pdf-parser';
